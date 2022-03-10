@@ -5,7 +5,7 @@ const socketIO = require("socket.io");
 const { addMessage, getChannelMessages } = require("./messages");
 const { channels, addUserToChannel } = require("./channels");
 
-const { addUser, removeUser } = require("./users");
+const { addUser, removeUser }  = require("./users");
 
 const app = express();
 app.use(cors());
@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
  // Get username and channel
  const { username, channel } = socket.handshake.query;
  console.log(`${username} connected`);
- // Join the user to the channel
+ // Add(join) the user to the channel
  socket.join(channel);
  addUser(username, socket.id);
  addUserToChannel(channel, username);
