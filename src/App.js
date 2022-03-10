@@ -6,7 +6,7 @@ import Login from "./components/login";
 
 function App() {
  const [username, setUsername] = useState("");
- const [loggedIn, setLoggedIn] = useState(true);
+ const [loggedIn, setLoggedIn] = useState(false);
 
  const handleUsernameChange = (event) => {
    setUsername(event.target.value.trim());
