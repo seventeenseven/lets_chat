@@ -18,7 +18,7 @@ export const initSocket = (channel, username) => {
  }
 };
 
-export const swichChannel = (prevChannel, channel) => {
+export const switchBtChannel = (prevChannel, channel) => {
  if (socket) {
    socket.emit("CHANNEL_SWITCH",{prevChannel, channel});
  }

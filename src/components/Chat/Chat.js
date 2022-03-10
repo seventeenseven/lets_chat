@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "skeleton-css/css/normalize.css";
 import "skeleton-css/css/skeleton.css";
-import "./Chat.scss";
+
 import {
  initSocket,
- swichChannel,
+ switchBtChannel,
  fetchChannels,
  fetchChannelMessages,
  sendMessage,
@@ -12,8 +12,8 @@ import {
 } from "../../helpers/socket";
 import { v4 as uuidv4 } from "uuid";
 import "emoji-mart/css/emoji-mart.css";
-import Channels from "./Channels";
-import ChatScreen from "./ChatScreen";
+import Channels from "../Channels";
+import ChatScreen from "./ChatMessages";
 
 function Chat({ username }) {
  const [message, setMessage] = useState("");
@@ -32,12 +32,12 @@ function Chat({ username }) {
 
  useEffect(() => {
    if (prevChannel && channel) {
-     swichChannel(prevChannel, channel);
+     switchBtChannel(prevChannel, channel);
      setChannel(channel);
    } else if (channel) {
      initSocket(channel, username);
    }
- }, [channel]);
+ }, [channel, username, prevChannel]);
 
  useEffect(() => {
    setMessages([]);
@@ -93,7 +93,7 @@ function Chat({ username }) {
        username={username}
        channelsLoading={channelsLoading}
        channels={channels}
-       }channel={channel}
+       channel={channel}
        setChannel={setChannel}
      />
      <ChatScreen

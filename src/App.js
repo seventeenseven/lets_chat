@@ -6,7 +6,7 @@ import Login from "./components/login";
 
 function App() {
  const [username, setUsername] = useState("");
- const [loggedIn, setLoggedIn] = useState(false);
+ const [loggedIn, setLoggedIn] = useState(true);
 
  const handleUsernameChange = (event) => {
    setUsername(event.target.value.trim());
@@ -18,6 +18,8 @@ function App() {
    e.preventDefault();
 
    setLoggedIn(true);
+   console.log(username);
+   console.log(loggedIn)
  };
 
  return (
