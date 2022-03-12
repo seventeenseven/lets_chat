@@ -5,12 +5,15 @@ function Channels({
  channelsLoading,
  channels,
  channel,
+ users,
  setChannel,
 }) {
+  console.log(users);
+  
  return (
    <aside className="sidebar left-sidebar">
      <div className="user-profile">
-       <span className="username">@ {username}</span>
+       <span className="username">@ {username} <i className="online presence"></i></span>
      </div>
      <div className="channels">
        <ul className="chat-channels">
@@ -30,12 +33,22 @@ function Channels({
                </li>
              );
            })
+           
          ) : (
            <li>
              <span className="channel-name">No channels available</span>
            </li>
          )}
        </ul>
+       <h6>Online Members</h6>
+           <ul className="chat-channels">
+             { channels.length ?
+           Object.entries(users)
+           .map( ([user, id])=>
+           <li key={user} >{user}
+           <span className="presence online"> </span>
+           </li>
+           ):""}</ul>
      </div>
    </aside>
  );

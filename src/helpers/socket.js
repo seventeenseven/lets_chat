@@ -7,6 +7,7 @@ const SOCKET_URL = "http://localhost:8080";
 
 //Initializing the user connection to
 export const initSocket = (channel, username) => {
+  console.log('in init')
  socket = io(SOCKET_URL, {
    query: { channel, username },
  });
@@ -46,6 +47,13 @@ export const fetchChannels = async () => {
 
  return response.data.channels;
 };
+
+//Get the online users
+export const fetchUsers = async () => {
+  const response = await axios.get(`${SOCKET_URL}/getUsers`);
+ 
+  return response.data.users;
+ };
 
 //Get specific messages of a channel
 export const fetchChannelMessages = async (channel) => {

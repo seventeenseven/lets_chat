@@ -13,17 +13,19 @@ function App() {
  };
 
  const handleUsernameSubmit = (e) => {
-   if (!username.length) return;
-
-   e.preventDefault();
-
+   if (username.length === 0){
+     console.log("Empty username")
+    return 0;
+   } else {
+    e.preventDefault();
    setLoggedIn(true);
-   console.log(username);
-   console.log(loggedIn)
+   }
+ 
  };
 
  return (
    <div className="main-div">
+     
      {!loggedIn ? (
        <Login
          usernameChange={handleUsernameChange}

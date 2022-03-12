@@ -1,7 +1,8 @@
 function Login({usernameChange, usernameSubmit}) {
+  console.log("in login comp");
 return (
 	<div className="login-container">
-	
+      <p>Let's Chat Login</p>
 			<div className="login">
        <form className="login-form" onSubmit={usernameSubmit}>
          <label className="username-label" htmlFor="username">

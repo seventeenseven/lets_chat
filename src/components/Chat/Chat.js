@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "skeleton-css/css/normalize.css";
 import "skeleton-css/css/skeleton.css";
-
+import './Chat.scss';
 import {
  initSocket,
  switchBtChannel,
@@ -9,21 +9,24 @@ import {
  fetchChannelMessages,
  sendMessage,
  subscribeToMessage,
+ fetchUsers,
 } from "../../helpers/socket";
 import { v4 as uuidv4 } from "uuid";
 import "emoji-mart/css/emoji-mart.css";
 import Channels from "../Channels";
-import ChatScreen from "./ChatMessages";
+import ChatScreen from "./ChatScreen";
 
 function Chat({ username }) {
+  console.log(username);
+  
  const [message, setMessage] = useState("");
  const [channel, setChannel] = useState("Lets chat");
  const [channels, setChannels] = useState([]);
+ const [users, setUsers] = useState([]);
  const [messages, setMessages] = useState([]);
  const [messagesLoading, setMessagesLoading] = useState(true);
  const [channelsLoading, setChannelsLoading] = useState(true);
  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-
  const prevChannelRef = useRef();
  useEffect(() => {
    prevChannelRef.current = channel;
@@ -34,6 +37,7 @@ function Chat({ username }) {
    if (prevChannel && channel) {
      switchBtChannel(prevChannel, channel);
      setChannel(channel);
+     console.log("in if channel switch");
    } else if (channel) {
      initSocket(channel, username);
    }
@@ -54,6 +58,10 @@ function Chat({ username }) {
      setChannels(res);
      setChannelsLoading(false);
    });
+   
+    fetchUsers().then((res) => {
+      setUsers(res);
+    });
 
    subscribeToMessage((err, data) => {
      setMessages((messages) => [...messages, data]);
@@ -94,6 +102,7 @@ function Chat({ username }) {
        channelsLoading={channelsLoading}
        channels={channels}
        channel={channel}
+       users={users}
        setChannel={setChannel}
      />
      <ChatScreen

@@ -5,7 +5,7 @@ const socketIO = require("socket.io");
 const { addMessage, getChannelMessages } = require("./messages");
 const { channels, addUserToChannel } = require("./channels");
 
-const { addUser, removeUser }  = require("./users");
+const { users, addUser, removeUser }  = require("./users");
 
 const app = express();
 app.use(cors());
@@ -23,6 +23,7 @@ io.on("connection", (socket) => {
  // Get username and channel
  const { username, channel } = socket.handshake.query;
  console.log(`${username} connected`);
+ 
  // Add(join) the user to the channel
  socket.join(channel);
  addUser(username, socket.id);
@@ -50,7 +51,7 @@ io.on("connection", (socket) => {
    socket.broadcast.to(channel).emit("NEW_MESSAGE", data);
  });
 });
-//Send the msgs of this channel
+//Send the msgs of the actual channel
 app.get("/channels/:channel/messages", (req, res) => {
  const allMessages = getChannelMessages(req.params.channel);
 
@@ -60,5 +61,9 @@ app.get("/channels/:channel/messages", (req, res) => {
 app.get("/getChannels", (req, res) => {
  return res.json({ channels });
 });
+
+app.get("/getUsers", (req, res) => {
+  return res.json({ users });
+ });
 
 server.listen(PORT, () => console.log(`Server listening to port ${PORT}`));

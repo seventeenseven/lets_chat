@@ -1,35 +1,23 @@
-import ChatMessages from "./ChatMessages";
-import MessageForm from "./MessageForm";
+import moment from 'moment';
 
-function ChatScreen({
- channel,
- messagesLoading,
- messages,
- showEmojiPicker,
- handleEmojiSelect,
- handleMessageSend,
- setShowEmojiPicker,
- message,
- handleMessageChange,
-}) {
- return (
-   <section className="chat-screen">
-     <header className="chat-header">
-       <h3>#{channel}</h3>
-     </header>
-     <ChatMessages messagesLoading={messagesLoading} messages={messages} />
-     <footer className="chat-footer">
-       <MessageForm
-         emojiSelect={handleEmojiSelect}
-         handleMessageSend={handleMessageSend}
-         setShowEmojiPicker={setShowEmojiPicker}
-         showEmojiPicker={showEmojiPicker}
-         message={message}
-         handleMessageChange={handleMessageChange}
-       />
-     </footer>
-   </section>
- );
-}
+function ChatMessages( {messagesLoading, messages}) {
+    console.log(messages);
+    console.log(messagesLoading);
+    return (
+        <div className="chat-messages">
+            {messagesLoading ?(
+                <p>
+                <span className="">Loading messages....</span>
+              </p>
+            ):
+            messages.map((message) => 
+            <div className="message-box">
+            <strong>{message.user}</strong>
+            <span className="message">{message.body}</span> 
+            <small className="message-time">{moment(message.time).fromNow()}</small>  </div>)
+            }
+        </div>
+    )
+};
 
-export default ChatScreen;
+export default ChatMessages;
