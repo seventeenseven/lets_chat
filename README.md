@@ -1,5 +1,6 @@
-# portfolio_test
-Ceci est mon portfolio réalisé avec HTML et CSS.
+# lets_chat
+A messaging app made with ReactJS.
+
 
 Send and receive messages from/to your contact over Internet.
 
