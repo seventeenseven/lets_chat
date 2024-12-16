@@ -1,5 +1,6 @@
-# lets_chat
-A messaging app made with ReactJS.
+# portfolio_test
+Ceci est mon portfolio réalisé avec HTML et CSS.
+
 Send and receive messages from/to your contact over Internet.
 
 # Getting Started with Create React App
