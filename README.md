@@ -1,5 +1,5 @@
-# lets_chat
-A messaging app. Send and receive messages from/to your contact over Internet.
+A messaging app. 
+Send and receive messages from/to your contact over Internet.
 =======
 # Getting Started with Create React App
 
