@@ -1,6 +1,7 @@
-A messaging app. 
+# lets_chat
+A messaging app made with ReactJS.
 Send and receive messages from/to your contact over Internet.
-=======
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
